@@ -1,4 +1,4 @@
-module crawler_config
+module github.com/crawler_config
 
 go 1.20
 
