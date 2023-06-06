@@ -1,4 +1,4 @@
-module github.com/crawler_config
+module github.com/Xuzan9396/crawler_config
 
 go 1.20
 

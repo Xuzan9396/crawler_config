@@ -3,8 +3,8 @@ package config
 import (
 	_ "embed"
 	"encoding/json"
+	"github.com/Xuzan9396/crawler_config/zetcd"
 	"github.com/Xuzan9396/zlog"
-	"github.com/crawler_config/zetcd"
 	"github.com/fsnotify/fsnotify"
 	"github.com/spf13/viper"
 	"log"
