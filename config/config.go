@@ -1,10 +1,10 @@
 package config
 
 import (
-	"crawler_config/zetcd"
 	_ "embed"
 	"encoding/json"
 	"github.com/Xuzan9396/zlog"
+	"github.com/crawler_config/zetcd"
 	"github.com/fsnotify/fsnotify"
 	"github.com/spf13/viper"
 	"log"
