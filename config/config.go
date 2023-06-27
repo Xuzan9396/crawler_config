@@ -14,6 +14,7 @@ type Config struct {
 	Name string
 }
 
+// new config
 func InitConfig(name string, etcdKey ...string) error {
 	c := &Config{
 		Name: name,
