@@ -4,7 +4,6 @@ import (
 	_ "embed"
 	"encoding/json"
 	"github.com/Xuzan9396/crawler_config/zetcd"
-	"github.com/Xuzan9396/zlog"
 	"github.com/fsnotify/fsnotify"
 	"github.com/spf13/viper"
 	"log"
@@ -25,10 +24,13 @@ func InitConfig(name string, etcdKey ...string) error {
 	}
 	c.watchConfig()
 	if len(etcdKey) > 0 {
-		c.etcd(etcdKey[0])
+		err = c.etcd(etcdKey[0])
 
 	} else {
-		c.etcd("/mysql")
+		err = c.etcd("/mysql")
+	}
+	if err != nil {
+		return err
 	}
 	return nil
 }
@@ -61,19 +63,24 @@ func (c *Config) watchConfig() {
 	})
 }
 
-func (c *Config) etcd(key string) {
-	zetcd.Run()
-	zlog.F().Info("etcd启动成功")
+func (c *Config) etcd(key string) (err error) {
+	err = zetcd.Run()
+	if err != nil {
+		log.Println(err)
+		return err
+	}
+
+	log.Println("etcd启动成功")
 	res, err := zetcd.EtchClt().Get(key)
 	if err != nil {
-		log.Panic(err)
-		return
+		log.Println(err)
+		return err
 	}
 	var info Configs
 	err = json.Unmarshal(res.Value, &info)
 	if err != nil {
-		log.Panic(err)
-		return
+		log.Println(err)
+		return err
 	}
 
 	viper.Set("db.username", info.Db.Username)
@@ -93,5 +100,6 @@ func (c *Config) etcd(key string) {
 	viper.Set("mq.addr_url", info.Mq.AddrURL)
 	viper.Set("mq.username", info.Mq.Username)
 	viper.Set("mq.password", info.Mq.Password)
+	return nil
 
 }
