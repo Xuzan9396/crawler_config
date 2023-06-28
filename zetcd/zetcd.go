@@ -37,6 +37,7 @@ func Run() error {
 		return err
 	}
 	e3w = clt
+	return nil
 
 	//clt.CreateDir("/dir1")
 	//clt.Create("/dir1/key1", "2323")
