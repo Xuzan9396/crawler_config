@@ -101,6 +101,12 @@ func (c *Config) etcd(key string) (err error) {
 	viper.Set("mq.addr_url", info.Mq.AddrURL)
 	viper.Set("mq.username", info.Mq.Username)
 	viper.Set("mq.password", info.Mq.Password)
+
+	viper.Set("es.addr", info.Es.Addr)
+	viper.Set("es.crawler_index_name", info.Es.Crawler_index_name)
+
+	viper.Set("canal.addr", info.Canal.Addr)
+	viper.Set("canal.port", info.Canal.Port)
 	return nil
 
 }

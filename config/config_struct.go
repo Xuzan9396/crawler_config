@@ -6,6 +6,8 @@ type Configs struct {
 	Redis    Redis    `json:"redis"`
 	RedisAct RedisAct `json:"redis_act"`
 	Mq       Mq       `json:"mq"`
+	Es       Es       `json:"es"`
+	Canal    Canal    `json:"canal"`
 }
 type Db struct {
 	Username   string `json:"username"`
@@ -13,6 +15,7 @@ type Db struct {
 	Addr       string `json:"addr"`
 	Datasename string `json:"datasename"`
 }
+
 type DbSlave struct {
 	Username   string `json:"username"`
 	Password   string `json:"password"`
@@ -33,4 +36,13 @@ type Mq struct {
 	AddrURL  string `json:"addr_url"`
 	Username string `json:"username"`
 	Password string `json:"password"`
+}
+
+type Canal struct {
+	Addr string `json:"addr"`
+	Port int    `json:"port"`
+}
+type Es struct {
+	Addr               string `json:"addr"`
+	Crawler_index_name string `json:"crawler_index_name"`
 }
